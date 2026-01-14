@@ -1,28 +1,46 @@
----
-import "../styles/global.css";
-interface Props {
-    title: string;
-}
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/png" href="/Portfolio-Joel/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
 
-const { title } = Astro.props;
----
+    <title>Joel Biju | Software Developer</title>
+    <meta name="title" content="Joel Biju | Software Developer" />
+    <meta
+        name="description"
+        content="Full Stack Developer specializing in Java Spring Boot and React. Engineering elegance at Interland Technologies."
+    />
 
-<!doctype html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8" />
-        <meta
-            name="description"
-            content="Joel Biju - Software Developer & Creative Minimalist"
-        />
-        <meta name="viewport" content="width=device-width" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.png" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{title}</title>
-    </head>
-    <body
-        class="bg-midnight antialiased overflow-x-hidden selection:bg-gold selection:text-black"
-    >
-        <slot />
-    </body>
-</html>
+    <meta property="og:type" content="website" />
+    <meta
+        property="og:url"
+        content="https://joel3031.github.io/Portfolio-Joel/"
+    />
+    <meta property="og:title" content="Joel Biju | Software Developer" />
+    <meta
+        property="og:description"
+        content="Full Stack Developer specializing in Java Spring Boot and React. Check out my projects and experience."
+    />
+
+    <meta
+        property="og:image"
+        content="https://joel3031.github.io/Portfolio-Joel/og-image.png"
+    />
+
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta
+        property="twitter:url"
+        content="https://joel3031.github.io/Portfolio-Joel/"
+    />
+    <meta property="twitter:title" content="Joel Biju | Software Developer" />
+    <meta
+        property="twitter:description"
+        content="Full Stack Developer specializing in Java Spring Boot and React."
+    />
+    <meta
+        property="twitter:image"
+        content="https://joel3031.github.io/Portfolio-Joel/og-image.png"
+    />
+
+    {/* Rest of your head scripts... */}
+</head>

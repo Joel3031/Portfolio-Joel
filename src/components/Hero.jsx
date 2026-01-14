@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { motion, useMotionValue, useSpring, useMotionTemplate, useTransform } from 'framer-motion';
+import { motion, useMotionValue, useSpring, useMotionTemplate, useTransform, useScroll } from 'framer-motion';
 import profileImg from '../assets/Joel.png';
 
 const Hero = () => {
@@ -14,11 +14,17 @@ const Hero = () => {
     const winWidth = isClient ? window.innerWidth : 1920;
     const winHeight = isClient ? window.innerHeight : 1080;
 
-    // --- PARALLAX LOGIC ---
+    // --- MOUSE PARALLAX (DESKTOP) ---
     const backX = useTransform(cursorX, [0, winWidth], [-20, 20]);
     const backY = useTransform(cursorY, [0, winHeight], [-20, 20]);
     const frontX = useTransform(cursorX, [0, winWidth], [40, -40]);
     const frontY = useTransform(cursorY, [0, winHeight], [40, -40]);
+
+    // --- SCROLL PARALLAX (MOBILE) ---
+    const { scrollY } = useScroll();
+    // As user scrolls 500px down, image moves 150px down. 
+    // This makes it look like it's "staying behind" the text.
+    const mobileParallaxY = useTransform(scrollY, [0, 500], [0, 300]);
 
     // Flashlight Mask Logic
     const textureMask = useMotionTemplate`radial-gradient(circle at ${cursorX}px ${cursorY}px, black 0%, transparent 250px)`;
@@ -48,19 +54,16 @@ const Hero = () => {
     return (
         <section className="min-h-[100dvh] w-full flex items-center justify-center px-6 md:px-20 relative overflow-hidden bg-midnight pt-24 pb-12 md:py-0">
 
-            {/* --- MOBILE BACKGROUND IMAGE LAYER (Optimized) --- */}
-            <div className="absolute inset-0 z-0 md:hidden pointer-events-none">
-                <img
+            {/* --- MOBILE BACKGROUND IMAGE LAYER (With Scroll Parallax) --- */}
+            <div className="absolute inset-0 z-0 md:hidden pointer-events-none overflow-hidden">
+                <motion.img
+                    style={{ y: mobileParallaxY }} // <--- THE PARALLAX MAGIC
                     src={profileImg.src}
                     alt="Joel Biju"
-                    // UPDATED: 
-                    // 1. opacity-50 (was 20) -> Makes it much more visible
-                    // 2. brightness-75 (was 50) -> Makes it less dark
-                    className="w-full h-full object-cover opacity-50 grayscale sepia brightness-75 contrast-125"
+                    className="w-full h-[115%] object-cover opacity-50 grayscale sepia brightness-75 contrast-125 -mt-10"
+                // Added h-[115%] and -mt-10 to give extra height for the movement without showing gaps
                 />
                 <div className="absolute inset-0 bg-gold/10 mix-blend-color" />
-
-                {/* UPDATED: Stronger gradient (via-midnight/90) to keep text readable over the brighter image */}
                 <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/90 to-transparent" />
             </div>
 
@@ -97,7 +100,7 @@ const Hero = () => {
                     variants={container}
                     initial="hidden"
                     animate="show"
-                    className="relative order-1 flex flex-col justify-center text-center md:text-left" // Added center alignment for mobile text
+                    className="relative order-1 flex flex-col justify-center text-center md:text-left"
                 >
                     <motion.p variants={item} className="text-gold font-sans tracking-[0.2em] text-xs md:text-sm mb-4 uppercase font-bold">
                         Design • Develop • Deliver
@@ -135,45 +138,15 @@ const Hero = () => {
                     className="hidden md:flex justify-end order-2 translate-y-12"
                 >
                     <div className="relative w-full max-w-md aspect-[3/4] group flex justify-center">
-
-                        {/* 1. TEXT BEHIND (Parallax) */}
-                        <motion.h1
-                            style={{ x: backX, y: backY }}
-                            className="absolute top-10 left-1/2 -translate-x-1/2 text-[180px] leading-none font-serif font-bold text-white/5 z-0 select-none whitespace-nowrap"
-                        >
-                            BIJU
-                        </motion.h1>
-
-                        {/* 2. THE IMAGE (Mid Layer) */}
-                        <img
-                            src={profileImg.src}
-                            alt="Joel Biju"
-                            className="relative z-10 w-full h-full object-cover object-top
-                                        grayscale sepia brightness-90 contrast-110 
-                                        group-hover:grayscale-0 group-hover:sepia-0 group-hover:brightness-100 
-                                        transition-all duration-700 ease-out 
-                                        drop-shadow-2xl"
-                        />
-
-                        {/* 3. TEXT IN FRONT (Parallax + Floating) */}
-                        <motion.div
-                            style={{ x: frontX, y: frontY }}
-                            className="absolute bottom-20 -left-12 z-20 flex flex-col gap-2"
-                        >
-                            {/* Floating "BIJU" Text */}
-                            <h2 className="text-6xl p-3 font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold drop-shadow-lg">
-                                JOEL
-                            </h2>
-
-                            {/* Glassmorphism Badge */}
+                        <motion.h1 style={{ x: backX, y: backY }} className="absolute top-10 left-1/2 -translate-x-1/2 text-[180px] leading-none font-serif font-bold text-white/5 z-0 select-none whitespace-nowrap">BIJU</motion.h1>
+                        <img src={profileImg.src} alt="Joel Biju" className="relative z-10 w-full h-full object-cover object-top grayscale sepia brightness-90 contrast-110 group-hover:grayscale-0 group-hover:sepia-0 group-hover:brightness-100 transition-all duration-700 ease-out drop-shadow-2xl" />
+                        <motion.div style={{ x: frontX, y: frontY }} className="absolute bottom-20 -left-12 z-20 flex flex-col gap-2">
+                            <h2 className="text-6xl p-3 font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold drop-shadow-lg">JOEL</h2>
                             <div className="bg-midnight/80 backdrop-blur-md border border-gold/30 p-3 rounded-sm flex items-center gap-3 w-fit">
                                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-                                <span className="text-xs font-mono text-gray-300 uppercase tracking-widest">
-                                    Java • React • Angular
-                                </span>
+                                <span className="text-xs font-mono text-gray-300 uppercase tracking-widest">Java • React • Angular</span>
                             </div>
                         </motion.div>
-
                     </div>
                 </motion.div>
 
