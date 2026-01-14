@@ -1,46 +1,63 @@
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/png" href="/Portfolio-Joel/favicon.png" />
-    <meta name="generator" content={Astro.generator} />
+---
+import "../styles/global.css";
+interface Props {
+    title: string;
+}
 
-    <title>Joel Biju | Software Developer</title>
-    <meta name="title" content="Joel Biju | Software Developer" />
-    <meta
-        name="description"
-        content="Full Stack Developer specializing in Java Spring Boot and React. Engineering elegance at Interland Technologies."
-    />
+const { title } = Astro.props;
+---
 
-    <meta property="og:type" content="website" />
-    <meta
-        property="og:url"
-        content="https://joel3031.github.io/Portfolio-Joel/"
-    />
-    <meta property="og:title" content="Joel Biju | Software Developer" />
-    <meta
-        property="og:description"
-        content="Full Stack Developer specializing in Java Spring Boot and React. Check out my projects and experience."
-    />
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/png" href="/Portfolio-Joel/favicon.png" />
+        <meta name="generator" content={Astro.generator} />
 
-    <meta
-        property="og:image"
-        content="https://joel3031.github.io/Portfolio-Joel/og-image.png"
-    />
+        <title>{title}</title>
+        <meta name="title" content={title} />
+        <meta
+            name="description"
+            content="Joel Biju - Software Developer specializing in Java, Spring Boot, and React. Building scalable enterprise solutions and interactive web experiences."
+        />
 
-    <meta property="twitter:card" content="summary_large_image" />
-    <meta
-        property="twitter:url"
-        content="https://joel3031.github.io/Portfolio-Joel/"
-    />
-    <meta property="twitter:title" content="Joel Biju | Software Developer" />
-    <meta
-        property="twitter:description"
-        content="Full Stack Developer specializing in Java Spring Boot and React."
-    />
-    <meta
-        property="twitter:image"
-        content="https://joel3031.github.io/Portfolio-Joel/og-image.png"
-    />
+        <meta property="og:type" content="website" />
+        <meta
+            property="og:url"
+            content="https://joel3031.github.io/Portfolio-Joel/"
+        />
+        <meta property="og:title" content="Joel Biju | Software Developer" />
+        <meta
+            property="og:description"
+            content="Full Stack Developer specializing in Java Spring Boot and React. Check out my projects and technical experience."
+        />
+        <meta
+            property="og:image"
+            content="https://joel3031.github.io/Portfolio-Joel/og-image.png"
+        />
 
-    {/* Rest of your head scripts... */}
-</head>
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta
+            property="twitter:url"
+            content="https://joel3031.github.io/Portfolio-Joel/"
+        />
+        <meta
+            property="twitter:title"
+            content="Joel Biju | Software Developer"
+        />
+        <meta
+            property="twitter:description"
+            content="Full Stack Developer specializing in Java Spring Boot and React. Check out my projects and technical experience."
+        />
+        <meta
+            property="twitter:image"
+            content="https://joel3031.github.io/Portfolio-Joel/og-image.png"
+        />
+    </head>
+    <body
+        class="bg-midnight antialiased overflow-x-hidden selection:bg-gold selection:text-black"
+    >
+        <slot />
+    </body>
+</html>
