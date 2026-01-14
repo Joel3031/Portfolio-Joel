@@ -10,18 +10,13 @@ const Hero = () => {
     const cursorY = useSpring(mouseY, springConfig);
 
     // --- FIX: SAFE WINDOW DIMENSIONS ---
-    // If 'window' is undefined (Server Side), use generic 1920x1080 values to prevent crashing.
-    // Once loaded on the client, it will use the real window size.
     const isClient = typeof window !== "undefined";
     const winWidth = isClient ? window.innerWidth : 1920;
     const winHeight = isClient ? window.innerHeight : 1080;
 
-    // --- PARALLAX LOGIC (Using Safe Values) ---
-    // Background text moves slowly
+    // --- PARALLAX LOGIC ---
     const backX = useTransform(cursorX, [0, winWidth], [-20, 20]);
     const backY = useTransform(cursorY, [0, winHeight], [-20, 20]);
-
-    // Foreground text moves faster
     const frontX = useTransform(cursorX, [0, winWidth], [40, -40]);
     const frontY = useTransform(cursorY, [0, winHeight], [40, -40]);
 
@@ -53,15 +48,20 @@ const Hero = () => {
     return (
         <section className="min-h-[100dvh] w-full flex items-center justify-center px-6 md:px-20 relative overflow-hidden bg-midnight pt-24 pb-12 md:py-0">
 
-            {/* --- MOBILE BACKGROUND IMAGE LAYER --- */}
+            {/* --- MOBILE BACKGROUND IMAGE LAYER (Optimized) --- */}
             <div className="absolute inset-0 z-0 md:hidden pointer-events-none">
                 <img
                     src={profileImg.src}
                     alt="Joel Biju"
-                    className="w-full h-full object-cover opacity-20 grayscale sepia brightness-50 contrast-125"
+                    // UPDATED: 
+                    // 1. opacity-50 (was 20) -> Makes it much more visible
+                    // 2. brightness-75 (was 50) -> Makes it less dark
+                    className="w-full h-full object-cover opacity-50 grayscale sepia brightness-75 contrast-125"
                 />
                 <div className="absolute inset-0 bg-gold/10 mix-blend-color" />
-                <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/80 to-transparent" />
+
+                {/* UPDATED: Stronger gradient (via-midnight/90) to keep text readable over the brighter image */}
+                <div className="absolute inset-0 bg-gradient-to-t from-midnight via-midnight/90 to-transparent" />
             </div>
 
             {/* Background Texture */}
@@ -97,7 +97,7 @@ const Hero = () => {
                     variants={container}
                     initial="hidden"
                     animate="show"
-                    className="relative order-1 flex flex-col justify-center"
+                    className="relative order-1 flex flex-col justify-center text-center md:text-left" // Added center alignment for mobile text
                 >
                     <motion.p variants={item} className="text-gold font-sans tracking-[0.2em] text-xs md:text-sm mb-4 uppercase font-bold">
                         Design • Develop • Deliver
@@ -110,13 +110,12 @@ const Hero = () => {
                         </span>
                     </motion.h1>
 
-                    <motion.p variants={item} className="font-sans text-gray-400 text-base md:text-xl max-w-xl leading-relaxed mb-8 md:mb-10">
-                        I am <span className="text-white font-medium">Joel Biju</span>. A Software Developer at Interland Technologies.
-                        I bridge the gap between robust Java backends and creative React frontends.
+                    <motion.p variants={item} className="font-sans text-gray-300 md:text-gray-400 text-base md:text-xl max-w-xl leading-relaxed mb-8 md:mb-10 mx-auto md:mx-0">
+                        I am <span className="text-white font-medium">Joel Biju</span>. Full Stack Developer dedicated to building polished digital experiences. I engineer scalable backends and intuitive, responsive sites for enterprise success.
                     </motion.p>
 
-                    <motion.div variants={item} className="flex flex-col sm:flex-row gap-4">
-                        <a href="tel:+919876543210" className="md:hidden w-full sm:w-auto px-8 py-4 bg-gold text-midnight font-bold rounded-sm hover:bg-white transition-colors duration-300 text-center uppercase tracking-wider">
+                    <motion.div variants={item} className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                        <a href="tel:+918330096633" className="md:hidden w-full sm:w-auto px-8 py-4 bg-gold text-midnight font-bold rounded-sm hover:bg-white transition-colors duration-300 text-center uppercase tracking-wider">
                             Call Now
                         </a>
                         <a href="#contact" className="hidden md:block w-full sm:w-auto px-8 py-4 bg-gold text-midnight font-bold rounded-sm hover:bg-white transition-colors duration-300 text-center uppercase tracking-wider">
@@ -162,7 +161,7 @@ const Hero = () => {
                             className="absolute bottom-20 -left-12 z-20 flex flex-col gap-2"
                         >
                             {/* Floating "BIJU" Text */}
-                            <h2 className="text-6xl font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold drop-shadow-lg">
+                            <h2 className="text-6xl p-3 font-serif font-bold text-transparent bg-clip-text bg-gradient-to-r from-gold via-white to-gold drop-shadow-lg">
                                 JOEL
                             </h2>
 
@@ -170,7 +169,7 @@ const Hero = () => {
                             <div className="bg-midnight/80 backdrop-blur-md border border-gold/30 p-3 rounded-sm flex items-center gap-3 w-fit">
                                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                                 <span className="text-xs font-mono text-gray-300 uppercase tracking-widest">
-                                    Java • React
+                                    Java • React • Angular
                                 </span>
                             </div>
                         </motion.div>

@@ -8,8 +8,8 @@ const resumeData = {
             role: "Software Developer",
             company: "Interland Technologies",
             period: "Aug 2023 - Present",
-            description: "Specializing in backend development using Java and Spring Boot. Designing scalable, high-performance applications and integrating RESTful APIs.",
-            tech: ["Java", "Spring Boot", "Docker", "CI/CD", "Agile"]
+            description: "Full Stack Engineer at Interland Technologies dedicated to optimizing the entire web stack. From designing secure RESTful APIs to building modular React/Angular components, I focus on reducing bottlenecks and accelerating delivery through CI/CD automation. Successfully delivered enterprise-scale HRMS and corporate platforms that drive business outcomes.",
+            tech: ["Java", "Angular", "React", "Next JS", "Spring Boot", "Docker", "CI/CD", "Agile"]
         }
     ],
     education: [
@@ -33,15 +33,15 @@ const resumeData = {
     skills: [
         {
             category: "Backend",
-            items: ["Java", "Spring Boot", "RESTful APIs", "Maven", "PostgreSQL", "Microservices"]
+            items: ["Java", "Spring Boot", "Next JS", "RESTful APIs", "Maven", "PostgreSQL", "Microservices"]
         },
         {
             category: "Frontend",
-            items: ["React", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Figma"]
+            items: ["React", "Angular", "Astro", "JavaScript", "HTML5", "CSS3", "Tailwind CSS", "Figma"]
         },
         {
             category: "DevOps & Tools",
-            items: ["Docker", "Git", "Jenkins", "CI/CD", "Linux", "AWS Basics"]
+            items: ["Docker", "Git", "Jenkins", "CI/CD", "AWS Basics"]
         }
     ]
 };

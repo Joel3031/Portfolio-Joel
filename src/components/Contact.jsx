@@ -49,7 +49,7 @@ const Contact = () => {
                 </div>
 
                 <footer className="mt-32 text-gray-700 text-xs uppercase tracking-widest">
-                    © {new Date().getFullYear()} Joel Biju. Crafted with Astro & React.
+                    © {new Date().getFullYear()} Joel Biju
                 </footer>
             </div>
         </section>
