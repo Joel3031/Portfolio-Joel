@@ -1,16 +1,19 @@
 ---
-
+import Layout from "../layouts/Layout.astro";
+import Hero from "../components/Hero.jsx";
+import Resume from "../components/Resume.jsx";
+import Projects from "../components/Projects.jsx";
+import Contact from "../components/Contact.jsx";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Layout title="Joel Biju | Software Developer">
+	<main class="bg-midnight selection:bg-gold selection:text-black">
+		<Hero client:load />
+
+		<Resume client:visible />
+
+		<Projects client:visible />
+
+		<Contact client:visible />
+	</main>
+</Layout>
