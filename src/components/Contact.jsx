@@ -39,7 +39,7 @@ const Contact = () => {
 
                     {/* Download CV Button */}
                     <a
-                        href="/Joel_Biju_Resume.pdf"
+                        href="/Portfolio-Joel/Joel_Biju_Resume.pdf"
                         download="Joel_Biju_Resume.pdf"
                         className="group relative px-8 py-4 border border-white text-white font-bold overflow-hidden"
                     >
