@@ -5,12 +5,13 @@ import { motion } from 'framer-motion';
 import project1 from '../assets/payzo-project.png';
 import project2 from '../assets/nexusgloabal-project.png';
 import project3 from '../assets/onepoint-project.png';
+import project4 from '../assets/sandbox-project.png';
 
 const projects = [
     {
         id: 1,
-        title: "Payzo HR", // Updated from "HRMS Platform"
-        category: "HRMS Platform", // moved description here
+        title: "Payzo HR",
+        category: "HRMS Platform",
         description: "A comprehensive Human Resource Management System built for Interland. Features include payroll processing, attendance tracking, and employee self-service portals.",
         tech: ["Java Spring Boot", "Angular", "PostgreSQL"],
         image: project1,
@@ -18,23 +19,55 @@ const projects = [
     },
     {
         id: 2,
-        title: "Nexus Global", // Updated from "Corporate Static Site"
+        title: "Nexus Global",
         category: "Corporate Site",
         description: "A high-performance corporate website designed to establish brand authority. Built with optimization and SEO at the forefront.",
-        tech: ["HTML/CSS", "JavaScript", "Bootstrap"],
+        tech: ["React", "Tailwind CSS", "Lovable.ai"],
         image: project2,
         link: "https://nexusglobal.sa/"
     },
     {
         id: 3,
-        title: "Onepoint Store", // Updated from "E-Commerce Suite"
+        title: "Onepoint Store",
         category: "E-Commerce",
         description: "A full-featured shopping platform. Includes cart management, payment gateway integration, and a custom admin dashboard.",
-        tech: ["React", "Node.js", "MongoDB"],
+        tech: ["React", "Node.js", "PostgreSQL"],
         image: project3,
         link: "https://onepointstore.vercel.app/login"
+    },
+    {
+        id: 4,
+        title: "PSH Sandbox",
+        category: "Development Sandbox",
+        description: "An online portal for developers to test API integrations and sandboxed environments for safe experimentation.",
+        tech: ["Angular", "Springboot", "PostgreSQL"],
+        image: project4,
+        link: "http://81.208.162.99/sandbox/developerPortal"
     }
 ];
+
+const LaptopFrame = ({ children }) => (
+    <div className="group relative">
+        {/* LAPTOP LID (The Screen Bezel) */}
+        {/* We use fit-content so it wraps perfectly around your specific aspect ratio */}
+        <div className="relative mx-auto bg-gray-900 rounded-t-xl border-[4px] border-gray-800 shadow-2xl overflow-hidden">
+
+            {/* Webcam Dot */}
+            <div className="absolute top-2 left-1/2 -translate-x-1/2 w-1.5 h-1.5 bg-gray-800 rounded-full z-20 pointer-events-none"></div>
+
+            {/* The Screen Content (Your Image) */}
+            <div className="bg-black rounded-lg overflow-hidden relative">
+                {children}
+            </div>
+        </div>
+
+        {/* LAPTOP BASE (Keyboard Area) */}
+        <div className="relative mx-auto bg-gray-900 h-4 md:h-5 rounded-b-xl shadow-[0_10px_20px_rgba(0,0,0,0.5)] z-10 w-[102%] -ml-[1%] flex items-center justify-center">
+            {/* Trackpad notch */}
+            <div className="w-16 md:w-24 h-1 bg-gray-800 rounded-full opacity-50"></div>
+        </div>
+    </div>
+);
 
 const Projects = () => {
     return (
@@ -56,7 +89,7 @@ const Projects = () => {
                 </div>
 
                 {/* THE GRID */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-12 md:gap-y-16">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20 md:gap-y-24">
                     {projects.map((project) => (
                         <motion.a
                             href={project.link}
@@ -69,27 +102,32 @@ const Projects = () => {
                             transition={{ duration: 0.6 }}
                             className="group cursor-pointer block"
                         >
-                            {/* IMAGE CONTAINER */}
-                            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-md bg-neutral-900 mb-6 border border-white/5">
-                                <img
-                                    src={project.image.src}
-                                    alt={project.title}
-                                    className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 opacity-80 group-hover:opacity-100"
-                                />
-                                <div className="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors duration-500" />
+                            {/* --- THE LAPTOP MOCKUP --- */}
+                            <LaptopFrame>
+                                {/* THE SCREEN CONTENT */}
+                                <div className="relative aspect-[1897/926] w-full bg-neutral-900 group-hover:brightness-110 transition-all duration-500">
+                                    <img
+                                        src={project.image.src}
+                                        alt={project.title}
+                                        className="h-full w-full object-cover" // object-cover here ensures no black bars, fitting the custom ratio perfectly
+                                    />
 
-                                {/* Hover Icon */}
-                                <div className="absolute bottom-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                                    <div className="bg-white text-midnight p-3 rounded-full shadow-lg">
-                                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-5 h-5">
-                                            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25" />
-                                        </svg>
+                                    {/* Screen Glare/Reflection Effect */}
+                                    <div className="absolute inset-0 bg-gradient-to-tr from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+                                    {/* Hover Overlay with Icon */}
+                                    <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-all duration-300 flex items-center justify-center">
+                                        <div className="bg-white/10 backdrop-blur-md p-4 rounded-full border border-white/20 transform scale-75 group-hover:scale-100 transition-transform duration-300">
+                                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="white" className="w-6 h-6">
+                                                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                                            </svg>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            </LaptopFrame>
 
-                            {/* TEXT CONTENT */}
-                            <div className="flex flex-col gap-3">
+                            {/* TEXT CONTENT (Below Laptop) */}
+                            <div className="flex flex-col gap-3 mt-8 px-2">
                                 <div className="flex justify-between items-start">
                                     <h3 className="text-xl md:text-2xl text-white font-serif group-hover:text-gold transition-colors duration-300">
                                         {project.title}

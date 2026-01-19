@@ -37,7 +37,17 @@ const Contact = () => {
                         <div className="absolute inset-0 bg-gold transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
                     </a>
 
-                    {/* LinkedIn Button */}
+                    {/* Download CV Button */}
+                    <a
+                        href="/Joel_Biju_Resume.pdf"
+                        download="Joel_Biju_Resume.pdf"
+                        className="group relative px-8 py-4 border border-white text-white font-bold overflow-hidden"
+                    >
+                        <span className="relative z-10 group-hover:text-midnight transition-colors duration-300">Download CV</span>
+                        <div className="absolute inset-0 bg-white transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
+                    </a>
+
+                    {/* LinkedIn Button (Text Link) */}
                     <a
                         href="https://www.linkedin.com/in/joel-biju"
                         target="_blank"

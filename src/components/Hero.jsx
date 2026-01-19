@@ -122,7 +122,7 @@ const Hero = () => {
                             Call Now
                         </a>
                         <a href="#contact" className="hidden md:block w-full sm:w-auto px-8 py-4 bg-gold text-midnight font-bold rounded-sm hover:bg-white transition-colors duration-300 text-center uppercase tracking-wider">
-                            Book Appointment
+                            Let's Connect
                         </a>
                         <a href="#work" className="w-full sm:w-auto px-8 py-4 border border-white/20 text-white rounded-sm hover:border-gold hover:text-gold transition-colors duration-300 text-center uppercase tracking-wider">
                             View Projects
