@@ -6,6 +6,7 @@ import project1 from '../assets/payzo-project.png';
 import project2 from '../assets/nexusgloabal-project.png';
 import project3 from '../assets/onepoint-project.png';
 import project4 from '../assets/sandbox-project.png';
+import project5 from '../assets/TradeX-project.png';
 
 const projects = [
     {
@@ -43,6 +44,15 @@ const projects = [
         tech: ["Angular", "Springboot", "PostgreSQL"],
         image: project4,
         link: "http://81.208.162.99/sandbox/developerPortal"
+    },
+    {
+        id: 5,
+        title: "TradeX",
+        category: "Trading Journal",
+        description: "A personal trading journal application that allows traders to log their trades, analyze performance, and track progress over time.",
+        tech: ["React", "Next.js", "PostgreSQL"],
+        image: project5,
+        link: "https://trade-x-trade.vercel.app/login"
     }
 ];
 
